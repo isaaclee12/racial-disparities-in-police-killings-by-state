@@ -7,7 +7,7 @@
             print 'activePage';
         }
         print '">';
-        print '<a href="map.html">Map</a>';
+        print '<a href="map.php">Map</a>';
         print '</li>';
 
         print '<li class="';
@@ -15,7 +15,7 @@
             print 'activePage';
         }
         print '">';
-        print '<a href="aboutUs.html">About Us</a>';
+        print '<a href="aboutUs.php">About Us</a>';
         print '</li>';
 
         print '<li class="';
@@ -23,7 +23,7 @@
             print 'activePage';
         }
         print '">';
-        print '<a href="purpose.html">Purpose</a>';
+        print '<a href="purpose.php">Purpose</a>';
         print '</li>';
 
 

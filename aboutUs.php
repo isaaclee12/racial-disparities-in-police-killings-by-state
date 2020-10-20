@@ -4,14 +4,14 @@ include ('top.php');
 
 <main>
     <article>
-        <h2>Software Developers</h2>
+        <h2>Website Creators</h2>
         <section>
             <h3><b>Yousef Khan</b></h3>
         <figure>
             <img alt="Yousef's Picture" src="">
 
         </figure>
-        <p>My name is Yousef Khan...</p>
+        <p>My name is Yousef Khan and I am studying studying Computer Science at UVM...</p>
         </section>
         <section>
             <h3><b>Grace Bart</b></h3>
