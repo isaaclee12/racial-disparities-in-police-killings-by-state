@@ -1,7 +1,10 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
+import random
 ## TODO: import Isaac's mongodb code, for now return fake values
 
 app = Flask(__name__)
+cors = CORS(app)
 
 us_state_abbrev = {
     'AL': 'Alabama',        'AK': 'Alaska',        'AZ': 'Arizona',
@@ -44,7 +47,7 @@ def statistics(state_abbrev):
         return jsonify(data)
     data = dict(stateName = us_state_abbrev[state_abbrev.upper()])
     ## TODO: get real numbers from database
-    data["totalPoliceShootings2018"] = 100
+    data["totalPoliceShootings2018"] = random.randint(10,1000)
     return jsonify(data)
 
 if __name__ == "__main__":
