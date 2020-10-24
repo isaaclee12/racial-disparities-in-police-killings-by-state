@@ -1,13 +1,18 @@
 import pymongo
 
+
 def counter(mydoc):
 
+    # Initialize counter
     ct = 0
 
+    # Increment counter for every instance found
     for x in mydoc:
         ct += 1
 
+    # Return count
     return ct
+
 
 def main():
 
@@ -49,6 +54,10 @@ def main():
         myquery = {"State": "CA"}
 
         mydoc = mycol.find(myquery)
+
+        # Uncomment this to print all CA killings - be warned, this takes a long time
+        # for x in mydoc:
+        #     print(x)
 
         CA_killings = counter(mydoc)
 
