@@ -1,5 +1,13 @@
 import pymongo
-#import dnspy
+
+def counter(mydoc):
+
+    ct = 0
+
+    for x in mydoc:
+        ct += 1
+
+    return ct
 
 def main():
 
@@ -29,14 +37,8 @@ def main():
             # Get next line
             line = police_killings.readline()
 
-        # mongoDB
-
         # Set up connection with MongoClient
         myclient = pymongo.MongoClient("mongodb+srv://iwlee:EggCheeseBeansToast@uspolicekillings.ezqox.mongodb.net/US_Police_Killings?retryWrites=true&w=majority")
-
-        # mongodb://localhost:27017/
-
-        #mongodb+srv://iwlee:EggCheeseBeansToast@uspolicekillings.ezqox.mongodb.net/police_killings?retryWrites=true&w=majority
 
         # Set up database
         mydb = myclient["police_killings"]
@@ -46,21 +48,11 @@ def main():
 
         myquery = {"State": "CA"}
 
-        mydoc = mycol.find() #myquery
+        mydoc = mycol.find(myquery)
 
-        print("A")
-        # for x in mydoc:
-        #     print(x)
+        CA_killings = counter(mydoc)
 
-        # # Get list of databases in client server
-        # dblist = mydb.list_collection_names()
-        #
-        # # Debug: Print Database List
-        # print(mydb, "LIST: ", dblist)
-        #
-        # # If my database is in the list, print that it exists
-        # if "mydatabase" in dblist:
-        #     print("The database exists.")
+        print("Number of killings in CA: ", CA_killings)
 
 
 main()
