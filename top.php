@@ -20,16 +20,6 @@ $path_parts = pathinfo($phpSelf);
     <?php
             $debug = false;
 
-
-
-            if (isset($_GET["debug"])) {
-                $debug = true;
-            }
-
-
-
-
-
     $domain = '//';
 
     $server = htmlentities($_SERVER['SERVER_NAME'], ENT_QUOTES, 'UTF-8');
@@ -38,7 +28,7 @@ $path_parts = pathinfo($phpSelf);
 
     if ($debug) {
         print '<p>php Self: ' . $phpSelf;
-        <!-- print '<pdomain: ' . $domain; -->
+
         print '<p>Path Parts<pre>';
         print_r($path_parts);
         print '</pre></p>';
