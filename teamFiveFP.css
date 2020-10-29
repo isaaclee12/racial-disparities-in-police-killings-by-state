@@ -1,6 +1,6 @@
 /* ========================= Whole site ===============================*/
-body { 
-    background-image: url('images/background.jpg');
+body {
+    background-color: #A9A9A9;
     background-attachment: fixed;
     background-size: cover;
 }
@@ -9,38 +9,30 @@ h1{
     color:black;
 }
 /* ========================= Map ===============================*/
-#home h2{
+#map h2{
     font-size: 48pt;
     text-align: center;
 }
-#home figure{
+#map figure{
     max-width: 150px;
     
 }
-#home img{
-    float: left;
-   
-    margin: auto;
-    max-width: 100%;
-    max-height: 100%;
-    padding-right: 1em;
-}
 
-#home p{
+#map p{
     color: black;
     text-align: left;
     padding-bottom: 1em;
 }
-#home h2{
+#map h2{
     color: black;
     font-size: 24pt;
     text-align: center;
 }
-#home .big p{
+#map .big p{
     padding-bottom: 4em;
 }
 
-#home section{
+#map section{
     border: 3px solid black;
     margin-left: auto;
     margin-right: auto;
@@ -55,21 +47,21 @@ h1{
 
 /* ========================= About Us ===============================*/
 
-#about h2{
+#aboutUs h2{
     font-size: 24pt;
 }
-#about p{
+#aboutUs p{
     color: black;
     text-align: left;
     text-indent: 50px
 }
 
-#about figure {
+#aboutUs figure {
     
     align-content: center;
 }
 
-#about section{
+#aboutUs section{
     border: 3px solid black;
     margin-left: auto;
     margin-right: auto;
@@ -80,7 +72,7 @@ h1{
     background-color: cornsilk;
     border-radius: 15px;
 }
-#about img{
+#aboutUs img{
     border-radius: 1.0em;
     max-width: 100%;
     align-content: center;
@@ -141,6 +133,6 @@ header {
     background-color: #d8ffdd;
     border: thin solid black;
     border-radius: 15px;
-    
+
 }
 
