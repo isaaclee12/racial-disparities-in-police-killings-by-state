@@ -14,8 +14,7 @@ def counter(mydoc):
     return ct
 
 
-def main():
-
+def initDB():
     # FILE STUFF
 
     # Open file w/ utf-8 encoding (This circumvents a Unicode error)
@@ -46,12 +45,16 @@ def main():
         myclient = pymongo.MongoClient("mongodb+srv://iwlee:EggCheeseBeansToast@uspolicekillings.ezqox.mongodb.net/US_Police_Killings?retryWrites=true&w=majority")
 
         # Set up database
+        global mydb
         mydb = myclient["police_killings"]
+
+
+def queryDB(state_abbrev):
 
         # Get States
         mycol = mydb["US_Police_Killings"]
 
-        myquery = {"State": "CA"}
+        myquery = {"State": state_abbrev}
 
         mydoc = mycol.find(myquery)
 
@@ -59,9 +62,7 @@ def main():
         # for x in mydoc:
         #     print(x)
 
-        CA_killings = counter(mydoc)
+        killings = counter(mydoc)
 
-        print("Number of killings in CA: ", CA_killings)
-
-
-main()
+        return killings
+        #print("Number of killings in CA: ", CA_killings)
