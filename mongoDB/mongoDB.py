@@ -54,7 +54,10 @@ def main():
     # Get States
     mycol = mydb["US_Police_Killings"]
 
-    state = "CA"
+
+    # Choose a State
+    state = "FL"
+
 
     blackQuery = {"$and": [
         {"State": state},
@@ -73,13 +76,13 @@ def main():
     #     print(x)
 
     blackKillings = counter(blackDoc)
-    print("Number of killings in CA of Black People: ", blackKillings)
+    print("Number of killings in", state, "of Black People: ", blackKillings)
 
     notBlackKillings = counter(notBlackDoc)
-    print("Number of killings in CA of those who are not Black: ", notBlackKillings)
+    print("Number of killings in", state, "of those who are not Black: ", notBlackKillings)
 
     percentKillingsBlack = (blackKillings / (blackKillings + notBlackKillings)) * 100
-    print("Percentage of people in CA killed by police who are Black: ", format(percentKillingsBlack, '.2f'), "%")
+    print("Percentage of people in", state, "killed by police who are Black: ", format(percentKillingsBlack, '.2f'), "%")
 
 
 
@@ -97,28 +100,39 @@ def main():
             print("Error: demographic not found")
             percentageBlack = ""
 
-        # print(percentageBlack)
-
     percentageBlack  = float(percentageBlack) * 100
 
     if (percentageBlack < percentKillingsBlack):
 
-        print("The percent of people killed by police in " + state + " is " + str(format(percentKillingsBlack, '.2f')) + "%")
+        print("\nThe percent of people killed by police in " + state + " is " + str(
+            format(percentKillingsBlack, '.2f')) + "%")
         print("Even though only " + str(percentageBlack) + "% of " + state + "'s population is Black")
         blackDisparity = (percentKillingsBlack / percentageBlack)
-        # print("There is a disparity of " + str(format(disparity, '.2f')) + "%.")
 
-        print("\nConversely, the percent of people killed by police in " + state + " is " + str(format((100 - percentKillingsBlack), '.2f')) + "%")
+        print("\nThe percent of people killed by police in " + state + " who are not Black is " + str(
+            format((100 - percentKillingsBlack), '.2f')) + "%")
         print("Whereas " + str((100 - percentageBlack)) + "% of " + state + "'s population is not Black")
         notBlackDisparity = ((100 - percentKillingsBlack) / (100 - percentageBlack))
-        # print("There is a disparity of " + str(format(disparity, '.2f')) + "%.")
 
-        print("\nTherefore, a black person is (statistically speaking) " + str(format(blackDisparity/notBlackDisparity, '.2f')) + " times more likely to be killed by police than someone who is not Black in " + state)
+        print("\nTherefore, a black person is (statistically speaking) " + str(
+            format(blackDisparity / notBlackDisparity,
+                   '.2f')) + " times more likely to be killed by police than someone who is not Black in " + state)
 
+    else:
 
-    #print(blackDoc["Black"])
-    # notBlackDoc = mycol.find(notBlackQuery)
+        print("\nThe percent of people killed by police in " + state + " is " + str(
+            format(percentKillingsBlack, '.2f')) + "%")
+        print("and " + str(percentageBlack) + "% of " + state + "'s population is Black")
+        blackDisparity = (percentKillingsBlack / percentageBlack)
 
+        print("\nThe percent of people killed by police in " + state + " who are not Black is " + str(
+            format((100 - percentKillingsBlack), '.2f')) + "%")
+        print("Whereas " + str((100 - percentageBlack)) + "% of " + state + "'s population is not Black")
+        notBlackDisparity = ((100 - percentKillingsBlack) / (100 - percentageBlack))
+
+        print("\nTherefore, a black person is (statistically speaking) " + str(
+            format((notBlackDisparity / blackDisparity),
+                '.2f')) + " times less likely to be killed by police than someone who is not Black in " + state)
 
 
 main()
