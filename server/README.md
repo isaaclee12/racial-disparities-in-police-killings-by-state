@@ -5,6 +5,8 @@ Make sure that python3 and pip are installed. [link to pip documentation](https:
 ```
 $ pip install flask
 $ pip install flask-cors
+$ pip install pymongo
+$ pip install dnspython
 ```
 
 ## Developers Only: testing flask server

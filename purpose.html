@@ -1,0 +1,87 @@
+<?php
+$phpSelf = htmlentities($_SERVER['PHP_SELF'], ENT_QUOTES, "UTF-8");
+
+$path_parts = pathinfo($phpSelf);
+?>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- you can add php code here (similar to nav.php) to print a different title on each page -->
+
+        <title>Team Five's Final Project</title>
+
+        <link rel="icon" href="images/Logo.png" sizes="32x32" >
+        <meta charset="utf-8">
+        <meta name="author" content="Yousef Khan, Grace Bart, Isaac Lee, Phillip Nguyen">
+        <meta name="description" content="Social Justice">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <link rel="stylesheet" href="teamFiveFP.css" type="text/css" media="screen">
+    <?php
+            $debug = false;
+
+    $domain = '//';
+
+    $server = htmlentities($_SERVER['SERVER_NAME'], ENT_QUOTES, 'UTF-8');
+
+    $domain .= $server;
+?>
+
+
+    <!-- ######################     Start of Body   ############################ -->
+
+<!-- ######################     Start  of Nav   ############################ -->
+<nav>
+    <ol>
+        <?php
+        print '<li class="';
+        if($path_parts['filename'] == 'map'){
+            print 'activePage';
+        }
+        print '">';
+        print '<a href="map.html">Map</a>';
+        print '</li>';
+
+        print '<li class="';
+        if($path_parts['filename'] == 'aboutUs'){
+            print 'activePage';
+        }
+        print '">';
+        print '<a href="aboutUs.html">About Us</a>';
+        print '</li>';
+
+        print '<li class="';
+        if($path_parts['filename'] == 'purpose'){
+            print 'activePage';
+        }
+        print '">';
+        print '<a href="purpose.html">Purpose</a>';
+        print '</li>';
+
+
+
+        ?>
+    </ol>
+
+</nav>
+<!-- ######################     End  of Nav   ############################ -->
+<header>
+    <h1>Team Five Final Project</h1>
+</header>
+
+
+
+<main>
+    <article>
+        <h2>Purpose of This Website</h2>
+        <section>
+            <p> We created this website to help visualize and see data on ...</p>
+        </section>
+    </article>
+</main>
+
+<!-- ######################     Footer  #################################### -->
+<footer>
+    <p><br></p>
+    <p>Designed by: Yousef Khan, Grace Bart, Isaac Lee, Phillip Nguyen</p>
+</footer>
