@@ -1,14 +1,11 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-import random, sys, os
-
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-import mongoDB # import from parent directory
+import db_stub
 
 # Init Code: Starts up flask app and sets up database
 app = Flask(__name__)
 cors = CORS(app)
-mongoDB.initDB()
+db_stub.initDB()
 
 us_state_abbrev = {
     'AL': 'Alabama',        'AK': 'Alaska',        'AZ': 'Arizona',
@@ -45,13 +42,18 @@ def statistics(state_abbrev):
     for a valid state and returns the result to the user.
     '''
 
+    state = state_abbrev.upper()
     # initialize dictionary
-    if state_abbrev.upper() not in us_state_abbrev:
+    if state not in us_state_abbrev:
         data = dict()
         data["error"] = "No such state"
         return jsonify(data)
-    data = dict(stateName = us_state_abbrev[state_abbrev.upper()])
-    data["totalPoliceShootings2018"] = mongoDB.queryDB(state_abbrev.upper())
+
+    data = dict(stateName = us_state_abbrev[state])
+    data["totalPoliceKillings"] = db_stub.getTotalKillingsForState(state)
+    data["totalBlackPoliceKillings"] = db_stub.getBlackKillingsForState(state)
+    data["totalNonBlackPoliceKillings"] = db_stub.getNotBlackKillingsForState(state)
+    data["PercentBlackKillings"] = db_stub.getPercentBlackKillingsForState(state)
     # TODO: return more useful data?
     return jsonify(data)
 
