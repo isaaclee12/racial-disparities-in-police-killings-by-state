@@ -16,35 +16,6 @@ def counter(mydoc):
 
 def main():
 
-    # FILE STUFF
-
-    """
-    # Open file w/ utf-8 encoding (This circumvents a Unicode error)
-    global police_killings
-
-    try:
-        police_killings = open('/data/Fatal_Encounters_Police_Killings_2000_2020.csv', encoding='utf-8')
-
-    except EOFError:
-        print("Error: File could not be found/unable to open")
-
-    finally:
-
-        # Get first line
-        line = police_killings.readline()
-
-        # While there are still lines with content...
-        while line != "":
-
-            # Debug: Print Each Line
-            # print(line)
-            # TODO: Make line stuff happen
-
-            # Get next line
-            line = police_killings.readline()
-
-    """
-
     # Set up connection with MongoClient
     myclient = pymongo.MongoClient("mongodb+srv://iwlee:EggCheeseBeansToast@uspolicekillings.ezqox.mongodb.net/US_Police_Killings?retryWrites=true&w=majority")
 
@@ -54,10 +25,8 @@ def main():
     # Get States
     mycol = mydb["US_Police_Killings"]
 
-
     # Choose a State
-    state = "FL"
-
+    state = "CA"
 
     blackQuery = {"$and": [
         {"State": state},
@@ -83,8 +52,6 @@ def main():
 
     percentKillingsBlack = (blackKillings / (blackKillings + notBlackKillings)) * 100
     print("Percentage of people in", state, "killed by police who are Black: ", format(percentKillingsBlack, '.2f'), "%")
-
-
 
     # Get States
     demographics = mydb["US_State_Demographics_By_Race"]
