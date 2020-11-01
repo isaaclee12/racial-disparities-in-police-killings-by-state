@@ -1,11 +1,11 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
-import db_stub
+import mongoDB
 
 # Init Code: Starts up flask app and sets up database
 app = Flask(__name__)
 cors = CORS(app)
-db_stub.initDB()
+mongoDB.initDB()
 
 us_state_abbrev = {
     'AL': 'Alabama',        'AK': 'Alaska',        'AZ': 'Arizona',
@@ -50,12 +50,20 @@ def statistics(state_abbrev):
         return jsonify(data)
 
     data = dict(stateName = us_state_abbrev[state])
-    data["totalPoliceKillings"] = db_stub.getTotalKillingsForState(state)
-    data["totalBlackPoliceKillings"] = db_stub.getBlackKillingsForState(state)
-    data["totalNonBlackPoliceKillings"] = db_stub.getNotBlackKillingsForState(state)
-    data["PercentBlackKillings"] = db_stub.getPercentBlackKillingsForState(state)
-    # TODO: return more useful data?
+    data["totalPoliceKillings"] = mongoDB.queryDB(state)
+    # mongoDB.getTotalKillingsForState(state)
+    # data["totalBlackPoliceKillings"] = mongoDB.getBlackKillingsForState(state)
+    # data["totalNonBlackPoliceKillings"] = mongoDB.getNotBlackKillingsForState(state)
+    # data["PercentBlackKillings"] = mongoDB.getPercentBlackKillingsForState(state)
     return jsonify(data)
+
+@app.route('/static', methods=['GET']) #, methods=['GET']
+def map():
+    return render_template("../static.html")
+
+@app.route('/maptest', methods=['GET']) #, methods=['GET']
+def maptest():
+    return app.send_static_file("maptest.html")
 
 if __name__ == "__main__":
     app.run(debug=True, port=5000, threaded=True)
