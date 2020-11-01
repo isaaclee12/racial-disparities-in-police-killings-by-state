@@ -14,13 +14,18 @@ def counter(mydoc):
     return ct
 
 
-def main():
+def initDB():
 
     # Set up connection with MongoClient
     myclient = pymongo.MongoClient("mongodb+srv://iwlee:EggCheeseBeansToast@uspolicekillings.ezqox.mongodb.net/US_Police_Killings?retryWrites=true&w=majority")
 
-    # Set up database
+    # Set up databases
+    global mydb
     mydb = myclient["police_killings"]
+
+
+
+def queryDB(state_abbrev):
 
     # Get States
     mycol = mydb["US_Police_Killings"]
@@ -68,38 +73,38 @@ def main():
             percentageBlack = ""
 
     percentageBlack  = float(percentageBlack) * 100
+    message = ""
 
     if (percentageBlack < percentKillingsBlack):
 
-        print("\nThe percent of people killed by police in " + state + " is " + str(
-            format(percentKillingsBlack, '.2f')) + "%")
-        print("Even though only " + str(percentageBlack) + "% of " + state + "'s population is Black")
+        message += ("The percent of people killed by police in " + state + " is " + str(
+            format(percentKillingsBlack, '.2f')) + "%, ")
+        message += ("even though only " + str(percentageBlack) + "% of " + state + "'s population is Black. ")
         blackDisparity = (percentKillingsBlack / percentageBlack)
 
-        print("\nThe percent of people killed by police in " + state + " who are not Black is " + str(
-            format((100 - percentKillingsBlack), '.2f')) + "%")
-        print("Whereas " + str((100 - percentageBlack)) + "% of " + state + "'s population is not Black")
+        message += ("The percent of people killed by police in " + state + " who are not Black is " + str(
+            format((100 - percentKillingsBlack), '.2f')) + "%, ")
+        message += ("whereas " + str((100 - percentageBlack)) + "% of " + state + "'s population is not Black. ")
         notBlackDisparity = ((100 - percentKillingsBlack) / (100 - percentageBlack))
 
-        print("\nTherefore, a black person is (statistically speaking) " + str(
+        message += ("Therefore, a black person is (statistically speaking) " + str(
             format(blackDisparity / notBlackDisparity,
-                   '.2f')) + " times more likely to be killed by police than someone who is not Black in " + state)
+                   '.2f')) + " times more likely to be killed by police than someone who is not Black in " + state + ". ")
 
     else:
 
-        print("\nThe percent of people killed by police in " + state + " is " + str(
-            format(percentKillingsBlack, '.2f')) + "%")
-        print("and " + str(percentageBlack) + "% of " + state + "'s population is Black")
+        message += ("The percent of people killed by police in " + state + " is " + str(
+            format(percentKillingsBlack, '.2f')) + "%, ")
+        message += ("where " + str(percentageBlack) + "% of " + state + "'s population is Black. ")
         blackDisparity = (percentKillingsBlack / percentageBlack)
 
-        print("\nThe percent of people killed by police in " + state + " who are not Black is " + str(
-            format((100 - percentKillingsBlack), '.2f')) + "%")
-        print("Whereas " + str((100 - percentageBlack)) + "% of " + state + "'s population is not Black")
+        message += ("The percent of people killed by police in " + state + " who are not Black is " + str(
+            format((100 - percentKillingsBlack), '.2f')) + "%, ")
+        message += ("whereas " + str((100 - percentageBlack)) + "% of " + state + "'s population is not Black. ")
         notBlackDisparity = ((100 - percentKillingsBlack) / (100 - percentageBlack))
 
-        print("\nTherefore, a black person is (statistically speaking) " + str(
+        message += ("Therefore, a black person is (statistically speaking) " + str(
             format((notBlackDisparity / blackDisparity),
-                '.2f')) + " times less likely to be killed by police than someone who is not Black in " + state)
+                '.2f')) + " times less likely to be killed by police than someone who is not Black in " + state + ". ")
 
-
-main()
+    return message
