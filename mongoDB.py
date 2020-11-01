@@ -31,7 +31,7 @@ def queryDB(state_abbrev):
     mycol = mydb["US_Police_Killings"]
 
     # Choose a State
-    state = "CA"
+    state = state_abbrev
 
     blackQuery = {"$and": [
         {"State": state},
