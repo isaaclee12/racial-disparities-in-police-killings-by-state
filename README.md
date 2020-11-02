@@ -34,3 +34,17 @@ return the requested data to python. The python program will then calculate
 statistics based on the data and send the results to be draw via flask. The
 statistics will them be drawn using flask in the form of pie charts and numeric
 values.
+
+
+User Instructions:
+Run main.py through either an IDE or by navigating to this directory in your command line
+and entering the following:
+
+python main.py
+
+(Try "python3 main.py", without quotes, if the first command doesn't work)
+
+Then open your browser to http://127.0.0.1:5000/maptest to open the map. You can test the
+functionality by clicking a state and waiting for the results to print. As of the moment,
+it may take a few seconds to load the results. We hope to improve the loading time
+in the future.
