@@ -36,7 +36,7 @@ def test():
     return doc
 
 @app.route('/stats/state/<string:state_abbrev>', methods=['GET'])
-def statistics(state_abbrev):
+def statistics(us_state_abbrev, state_abbrev):
     '''
     This function interfaces with database code to obtain data
     for a valid state and returns the result to the user.
@@ -50,7 +50,7 @@ def statistics(state_abbrev):
         return jsonify(data)
 
     data = dict(stateName = us_state_abbrev[state])
-    data["totalPoliceKillings"] = mongoDB.queryDB(state)
+    data["totalPoliceKillings"] = mongoDB.queryDB(us_state_abbrev, state)
     # mongoDB.getTotalKillingsForState(state)
     # data["totalBlackPoliceKillings"] = mongoDB.getBlackKillingsForState(state)
     # data["totalNonBlackPoliceKillings"] = mongoDB.getNotBlackKillingsForState(state)
