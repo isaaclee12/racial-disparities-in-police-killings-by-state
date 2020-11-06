@@ -3,7 +3,7 @@ from flask_cors import CORS
 import mongoDB
 
 # Init Code: Starts up flask app and sets up database
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='')
 cors = CORS(app)
 mongoDB.initDB()
 
