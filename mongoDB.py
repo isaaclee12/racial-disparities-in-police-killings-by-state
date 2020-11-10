@@ -1,8 +1,12 @@
 import pymongo
 import re
+import sys
 import numpy
 
+SIZE = 50
 PERCENT_KILLINGS_BLACK_BY_STATE = []
+DATA_ARRAY = numpy.zeros((50, 3))
+# numpy.set_printoptions(threshold=sys.maxsize)
 
 def counter(mydoc):
 
@@ -33,6 +37,8 @@ def initDB(states):
     # Choose a State
     # state_abbrev = "CA"
     global PERCENT_KILLINGS_BLACK_BY_STATE
+    global DATA_ARRAY
+    rowct = 0
     # percentKillingsBlackByState = []
 
     print("Beginning Loop")
@@ -53,7 +59,11 @@ def initDB(states):
         # print(blackKillings)
 
         # blackKillings = counter(blackDoc)
-        print("Number of killings in", state, "of Black People: ", blackKillings)
+        # print("Number of killings in", state, "of Black People: ", blackKillings)
+        data = state, blackKillings, notBlackKillings
+        # print(data)
+        PERCENT_KILLINGS_BLACK_BY_STATE.append(data)
+        rowct += 1
 
         # notBlackKillings = counter(notBlackDoc)
         # print("Number of killings in", state, "of those who are not Black: ", notBlackKillings)
@@ -64,11 +74,12 @@ def initDB(states):
 
         # print(state, ": ", percentKillingsBlack)
 
-        blackItem = state, percentKillingsBlack
-        PERCENT_KILLINGS_BLACK_BY_STATE.append(blackItem)
+        # blackItem = state, percentKillingsBlack
+        # PERCENT_KILLINGS_BLACK_BY_STATE.append(blackItem)
 
-    # print(PERCENT_KILLINGS_BLACK_BY_STATE)
-
+    print(PERCENT_KILLINGS_BLACK_BY_STATE)
+    # for x in range(0, SIZE):
+    #     print(DATA_ARRAY[x])
 
 
 def queryDB(state_abbrev):
@@ -81,7 +92,7 @@ def queryDB(state_abbrev):
     # Get States
     demographics = mydb["US_State_Demographics_By_Race"]
 
-    blackDemographics = demographics.find({"Location": "California"}, {"Black": 1, "_id": 0})
+    blackDemographics = demographics.find({"Location": us_state_abbrev.get(state_abbrev)}, {"Black": 1, "_id": 0})
 
     for x in blackDemographics:
 
@@ -99,7 +110,7 @@ def queryDB(state_abbrev):
 
         message += ("The percent of people killed by police in " + state_abbrev + " is " + str(
             format(percentKillingsBlack, '.2f')) + "%, ")
-        message += ("even though only " + str(percentageBlack) + "% of " + state_abbrev + "'s population is Black. ")
+        message += ("even though only " + format(percentageBlack, '.2f') + "% of " + state_abbrev + "'s population is Black. ")
         blackDisparity = (percentKillingsBlack / percentageBlack)
 
         message += ("The percent of people killed by police in " + state_abbrev + " who are not Black is " + str(
@@ -115,7 +126,7 @@ def queryDB(state_abbrev):
 
         message += ("The percent of people killed by police in " + state_abbrev + " is " + str(
             format(percentKillingsBlack, '.2f')) + "%, ")
-        message += ("where " + str(percentageBlack) + "% of " + state_abbrev + "'s population is Black. ")
+        message += ("where " + format(percentageBlack, '.2f') + "% of " + state_abbrev + "'s population is Black. ")
         blackDisparity = (percentKillingsBlack / percentageBlack)
 
         message += ("The percent of people killed by police in " + state_abbrev + " who are not Black is " + str(
@@ -153,7 +164,7 @@ us_state_abbrev = {
 
 def main():
     initDB(us_state_abbrev)
-    print(queryDB("CA"))
+    print(queryDB("NY"))
 
 
 main()
