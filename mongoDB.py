@@ -7,19 +7,6 @@ SIZE = 50
 PERCENT_KILLINGS_BLACK_BY_STATE = []
 DATA_ARRAY = numpy.zeros((50, 3))
 FINAL_DATA_ARRAY = []
-# numpy.set_printoptions(threshold=sys.maxsize)
-
-def counter(mydoc):
-
-    # Initialize counter
-    ct = 0
-
-    # Increment counter for every instance found
-    for x in mydoc:
-        ct += 1
-
-    # Return count
-    return ct
 
 
 def initDB(states):
@@ -31,18 +18,15 @@ def initDB(states):
     global mydb
     mydb = myclient["police_killings"]
 
-
     # Get States
     mycol = mydb["US_Police_Killings"]
 
     # Choose a State
-    # state_abbrev = "CA"
     global PERCENT_KILLINGS_BLACK_BY_STATE
     global FINAL_DATA_ARRAY
     rowct = 0
-    # percentKillingsBlackByState = []
 
-    print("Beginning Loop")
+    print("Loading...")
 
     for state in states:
         blackQuery = {"$and": [
@@ -57,48 +41,19 @@ def initDB(states):
         blackKillings = mycol.count_documents(blackQuery)
         notBlackKillings = mycol.count_documents(notBlackQuery)
 
-        # print(blackKillings)
-
-        # blackKillings = counter(blackDoc)
-        # print("Number of killings in", state, "of Black People: ", blackKillings)
-
-        # notBlackKillings = counter(notBlackDoc)
-        # print("Number of killings in", state, "of those who are not Black: ", notBlackKillings)
-
         percentKillingsBlack = (blackKillings / (blackKillings + notBlackKillings)) * 100
-
-        # Save abbrev for later
-        state_abbrev = state
 
         data = state, percentKillingsBlack
         PERCENT_KILLINGS_BLACK_BY_STATE.append(data)
-        print(data)
+        # print(data)
         rowct += 1
-
-        # print("Percentage of people in", state, "killed by police who are Black: ", format(percentKillingsBlack, '.2f'),
-        #       "%")
-
-        # print(state, ": ", percentKillingsBlack)
-
-        # blackItem = state, percentKillingsBlack
-        # PERCENT_KILLINGS_BLACK_BY_STATE.append(blackItem)
-
-    # print(PERCENT_KILLINGS_BLACK_BY_STATE)
 
     for state in states:
         finalData = state, calculateStats(state)
         FINAL_DATA_ARRAY.append(finalData)
 
-    for item in FINAL_DATA_ARRAY:
-        print(item)
-
-    # for x in range(0, SIZE):
-    #     print(DATA_ARRAY[x])
-
-    # for item in PERCENT_KILLINGS_BLACK_BY_STATE:
-    #     data = state_abbrev, calculateStats(item[0])
-    #
-    # print(FINAL_DATA_ARRAY)
+    # for item in FINAL_DATA_ARRAY:
+    #     print(item)
 
 
 def calculateStats(state_abbrev):
@@ -202,6 +157,8 @@ def queryDB(state_abbrev):
 def main():
     initDB(us_state_abbrev)
     print(queryDB("NY"))
+    # print(queryDB("WY"))
+    # print(queryDB("CA"))
 
 
 main()
