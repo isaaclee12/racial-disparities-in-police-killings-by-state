@@ -1,5 +1,6 @@
 import pymongo
 import re
+import numpy
 
 PERCENT_KILLINGS_BLACK_BY_STATE = []
 
@@ -46,25 +47,27 @@ def initDB(states):
                           {"Race with imputations": {"$ne": "African-American/Black"}}
                          ]}
 
-        blackDoc = mycol.find(blackQuery)
-        notBlackDoc = mycol.find(notBlackQuery)
+        blackKillings = mycol.count_documents(blackQuery)
+        notBlackKillings = mycol.count_documents(notBlackQuery)
 
-        blackKillings = counter(blackDoc)
-        # print("Number of killings in", state, "of Black People: ", blackKillings)
+        # print(blackKillings)
 
-        notBlackKillings = counter(notBlackDoc)
+        # blackKillings = counter(blackDoc)
+        print("Number of killings in", state, "of Black People: ", blackKillings)
+
+        # notBlackKillings = counter(notBlackDoc)
         # print("Number of killings in", state, "of those who are not Black: ", notBlackKillings)
 
         percentKillingsBlack = (blackKillings / (blackKillings + notBlackKillings)) * 100
         # print("Percentage of people in", state, "killed by police who are Black: ", format(percentKillingsBlack, '.2f'),
         #       "%")
 
-        print(state, ": ", percentKillingsBlack)
+        # print(state, ": ", percentKillingsBlack)
 
         blackItem = state, percentKillingsBlack
         PERCENT_KILLINGS_BLACK_BY_STATE.append(blackItem)
 
-    print(PERCENT_KILLINGS_BLACK_BY_STATE)
+    # print(PERCENT_KILLINGS_BLACK_BY_STATE)
 
 
 
@@ -150,7 +153,7 @@ us_state_abbrev = {
 
 def main():
     initDB(us_state_abbrev)
-    queryDB("CA")
+    print(queryDB("CA"))
 
 
 main()
