@@ -2,6 +2,7 @@ import pymongo
 import re
 import sys
 import numpy
+import time
 
 SIZE = 50
 PERCENT_KILLINGS_BLACK_BY_STATE = []
@@ -268,8 +269,12 @@ def getTotalDisparity(state_abbrev):
 
 
 def main():
-
+    t0 = time.time()
     initDB(us_state_abbrev)
+    t1 = time.time()
+
+    print("Total load time: ", format((t1 - t0),'.2f'), "seconds")
+
 
     running = True
     while running:
@@ -281,9 +286,9 @@ def main():
             print(getPoliceKillingsArray())
             print(queryDB(state))
             print("% Killings Black:", getPercentKillingsBlack(state))
-            print("% Killings Not Black:",getPercentKillingsNotBlack(state))
-            print("% Population Black:",getPercentPopulationBlack(state))
-            print("% Population Not Black:",getPercentPopulationNotBlack(state))
+            print("% Killings Not Black:", getPercentKillingsNotBlack(state))
+            print("% Population Black:", getPercentPopulationBlack(state))
+            print("% Population Not Black:", getPercentPopulationNotBlack(state))
             print("Black Disparity of Police Killings to Population:", getBlackDisparity(state))
             print("Non-Black Disparity of Police Killings to Population:", getNotBlackDisparity(state))
             print("Disparity of Police Killings between Black and Non-Black People:", getTotalDisparity(state))
