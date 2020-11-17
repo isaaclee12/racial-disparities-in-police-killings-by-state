@@ -1,6 +1,6 @@
 /* ========================= Whole site ===============================*/
 body {
-    background-color: #A9A9A9;
+    background-color: #162129;
     background-attachment: fixed;
     background-size: cover;
 }
@@ -8,10 +8,22 @@ body {
 h1{
     color:black;
 }
+
+h2{
+    color: white;
+}
+h3{
+    color: white;
+}
+
+p{
+    color: white;
+}
 /* ========================= Map ===============================*/
 #map h2{
     font-size: 48pt;
     text-align: center;
+
 }
 #map figure{
     max-width: 150px;
@@ -19,15 +31,10 @@ h1{
 }
 
 #map p{
-    color: black;
     text-align: left;
     padding-bottom: 1em;
 }
-#map h2{
-    color: black;
-    font-size: 24pt;
-    text-align: center;
-}
+
 #map .big p{
     padding-bottom: 4em;
 }
@@ -50,8 +57,9 @@ h1{
 #aboutUs h2{
     font-size: 24pt;
 }
+
 #aboutUs p{
-    color: black;
+    color: white;
     text-align: left;
     text-indent: 50px
 }
@@ -78,6 +86,20 @@ h1{
     align-content: center;
     
 }
+
+
+
+
+/* ========================= purpose ===============================*/
+
+#purpose h2{
+    font-size: 24pt;
+}
+#purpose p{
+    text-align: left;
+    text-indent: 50px
+}
+
 /* ========================= footer ===============================*/
 #footer p{
     text-align: center;
@@ -87,21 +109,21 @@ h1{
 /* =========================  Nav ===================================*/
 nav a:hover{
     background-color: salmon;
-    border: 3px solid blue;
     padding: 0;
     text-decoration: underline;
 }
 
 nav ol{
-    padding-left: 0;
- 
+    padding-left: 819px;
+
 }
 nav ol li{
     display: inline-block;
     list-style-type: none;
-    padding-right: 3em;
+    padding: 14px;
     border: thin solid black;
-    width: 6em;
+    width: 5em;
+    font-size: 14px;
     text-align: center;
     background-color: white;
 }
@@ -115,7 +137,7 @@ nav a:link{
 
 
 .activePage{
-    background-color: aliceblue;
+    background-color: lightcoral;
     border-bottom-left-radius: 0.5em;
     border-bottom-right-radius: 0.5em;
     border-top-left-radius: 0.5em;
@@ -125,14 +147,70 @@ nav a:link{
       
 }
 
+/* Dropdown Button */
+nav .dropbtn {
+  background-color: white;
+  color: black;
+  padding: 14px;
+  font-size: 14px;
+  border: thin solid black;
+  display: inline-block;
+  list-style-type: none;
+}
+
+/* The container <div> - needed to position the dropdown content */
+nav .dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+nav .dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+nav .dropdown-content a {
+  color: black;
+  padding: 12px 12px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+nav .dropdown-content a:hover {background-color: salmon;}
+
+/* Show the dropdown menu on hover */
+nav .dropdown:hover .dropdown-content {display: block;}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+nav .dropdown:hover .dropbtn {background-color: white;}
 
 
 /* ========================= header ===============================*/
 header {
     font-size: 24pt;
-    background-color: #d8ffdd;
-    border: thin solid black;
-    border-radius: 15px;
+    background-color: #F1F1F1;
+    text-align: center;
+    padding: 20px;
+    overflow: hidden;
 
+}
+
+@media screen and (max-width: 500px) {
+    .header {
+        float: none;
+        display: block;
+        text-align: left;
+    }
+
+    header {
+        float: none;
+    }
 }
 

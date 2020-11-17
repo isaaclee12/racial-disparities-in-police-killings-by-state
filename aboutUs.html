@@ -36,6 +36,14 @@ $path_parts = pathinfo($phpSelf);
 <!-- ######################     Start  of Nav   ############################ -->
 <nav>
     <ol>
+        <div class="dropdown">
+          <button class="dropbtn">Relevant News </button>
+          <div class="dropdown-content">
+            <a href="https://www.statista.com/statistics/585152/people-shot-to-death-by-us-police-by-race/">Statistia</a>
+            <a href="https://www.washingtonpost.com/graphics/investigations/police-shootings-database/">The Washington Post</a>
+            <a href="https://www.nature.com/articles/d41586-020-01846-z">Nature</a>
+          </div>
+        </div>
         <?php
         print '<li class="';
         if($path_parts['filename'] == 'map'){
@@ -60,10 +68,8 @@ $path_parts = pathinfo($phpSelf);
         print '">';
         print '<a href="purpose.html">Learn Why</a>';
         print '</li>';
-
-
-
         ?>
+
     </ol>
 
 </nav>
