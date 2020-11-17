@@ -6,18 +6,21 @@
   width: 100%;
   height: 100%;
 }
-path:hover, circle:hover {
+
+path:not(#frames):hover, circle:hover {
   stroke: #002868 !important;
   stroke-width:2px;
   stroke-linejoin: round;
   fill: #002868 !important;
   cursor: pointer;
 }
+
 #path67 {
   fill: none !important;
   stroke: #A9A9A9 !important;
   cursor: default;
 }
+
 #info-box {
   display: none;
   position: absolute;
@@ -33,6 +36,5 @@ path:hover, circle:hover {
 /* END CODE from websitebeaver.com*/
 
 #stats {
-  position: fixed;
-  bottom: 10;
+    color: gray
 }

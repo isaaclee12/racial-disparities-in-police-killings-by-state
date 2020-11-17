@@ -10,8 +10,10 @@
  * The JSON data is reformatted into a simple list and written to <div id="stats">
  */
 
-$("path").click(function(e) {
+$("path:not(#frames)").click(function(e) {
   let state = $(this).attr("id");
+  // switch two lines for live instance
+  //$.getJSON("http://134.209.76.43:5000/stats/state/" + state, function(data) {
   $.getJSON("http://localhost:5000/stats/state/" + state, function(data) {
     let stats = []
     $.each(data, function(key,val) {
