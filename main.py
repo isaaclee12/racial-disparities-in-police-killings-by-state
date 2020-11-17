@@ -50,7 +50,7 @@ def statistics(us_state_abbrev, state_abbrev):
         return jsonify(data)
 
     data = dict(stateName = us_state_abbrev[state])
-    data["totalPoliceKillings"] = mongoDB.queryDB(us_state_abbrev, state)
+    data["totalPoliceKillings"] = mongoDB.queryDB(state) #us_state_abbrev,
     # mongoDB.getTotalKillingsForState(state)
     # data["totalBlackPoliceKillings"] = mongoDB.getBlackKillingsForState(state)
     # data["totalNonBlackPoliceKillings"] = mongoDB.getNotBlackKillingsForState(state)
