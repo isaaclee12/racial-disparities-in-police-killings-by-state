@@ -5,7 +5,7 @@ import mongoDB
 # Init Code: Starts up flask app and sets up database
 app = Flask(__name__, static_url_path='')
 cors = CORS(app)
-mongoDB.initDB()
+
 
 us_state_abbrev = {
     'AL': 'Alabama',        'AK': 'Alaska',        'AZ': 'Arizona',
@@ -27,6 +27,8 @@ us_state_abbrev = {
     'WI': 'Wisconsin',      'WY': 'Wyoming',
 }
 
+mongoDB.initDB(us_state_abbrev)
+
 @app.route('/', methods=['GET'])
 def test():
     '''Developer help function of sorts.'''
@@ -36,7 +38,7 @@ def test():
     return doc
 
 @app.route('/stats/state/<string:state_abbrev>', methods=['GET'])
-def statistics(us_state_abbrev, state_abbrev):
+def statistics(state_abbrev):
     '''
     This function interfaces with database code to obtain data
     for a valid state and returns the result to the user.
