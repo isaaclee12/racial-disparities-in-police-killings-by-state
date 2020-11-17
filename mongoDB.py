@@ -1,12 +1,12 @@
 import pymongo
 import re
 import sys
-import numpy
+#import numpy
 import time
 
 SIZE = 50
 PERCENT_KILLINGS_BLACK_BY_STATE = []
-DATA_ARRAY = numpy.zeros((50, 3))
+#DATA_ARRAY = numpy.zeros((50, 3))
 POLICE_KILLINGS_ARRAY = []
 
 us_state_abbrev = {
