@@ -9,7 +9,7 @@ POLICE_KILLINGS_ARRAY = []
 us_state_abbrev = {
     'AL': 'Alabama',        'AK': 'Alaska',        'AZ': 'Arizona',
     'AR': 'Arkansas',       'CA': 'California',    'CO': 'Colorado',
-    'HIGH_DISPARITY_CT': 'Connecticut',    'DE': 'Delaware',      'FL': 'Florida',
+    'CT': 'Connecticut',    'DE': 'Delaware',      'FL': 'Florida',
     'GA': 'Georgia',        'HI': 'Hawaii',        'ID': 'Idaho',
     'IL': 'Illinois',       'IN': 'Indiana',       'IA': 'Iowa',
     'KS': 'Kansas',         'KY': 'Kentucky',      'LA': 'Louisiana',
@@ -26,9 +26,9 @@ us_state_abbrev = {
     'WI': 'Wisconsin',      'WY': 'Wyoming',
 }
 
-HIGH_DISPARITY_CT = 0
+COUNT = 0
+
 def initDB(states):
-    global HIGH_DISPARITY_CT
 
     # Set up connection with MongoClient
     myclient = pymongo.MongoClient("mongodb+srv://iwlee:EggCheeseBeansToast@uspolicekillings.ezqox.mongodb.net/US_Police_Killings?retryWrites=true&w=majority")
@@ -62,53 +62,16 @@ def initDB(states):
 
         percentKillingsBlack = (blackKillings / (blackKillings + notBlackKillings)) * 100
 
-        #data = state, percentKillingsBlack
-        #PERCENT_KILLINGS_BLACK_BY_STATE.append(data)
-        # print(data)
         rowct += 1
 
-    #for state in states:
-        policeKillingsData = calculateStats(state, percentKillingsBlack) # , percentKillingsBlack
-        #getDemographics(state)
+        policeKillingsData = calculateStats(state, percentKillingsBlack)
         POLICE_KILLINGS_ARRAY.append(policeKillingsData)
-        POLICE_KILLINGS_ARRAY.append(policeKillingsData)
-
-    # for item in POLICE_KILLINGS_ARRAY:
-    #     print(item)
-
-def getDemographics(state_abbrev):
-    # Get State Demographics
-    demographics = mydb["US_State_Demographics_By_Race"]
-    #
-    blackDemographics = demographics.find({"Location": us_state_abbrev.get(state_abbrev)}, {"Black": 1, "_id": 0})
-
-    for x in blackDemographics:
-
-        try:
-            percentPopulationBlack = re.search(": '(.+?)'}", str(x)).group(1)
-
-        except AttributeError:
-            print("Error: demographic not found")
-            percentPopulationBlack = ""
-
-    # Clean data
-    if percentPopulationBlack == "<.01":
-        percentPopulationBlack = .01
-
-    percentPopulationBlack = float(percentPopulationBlack) * 100
-    #percentPopulationNotBlack = 100 - percentPopulationBlack
-    return percentPopulationBlack
-
-
 
 def calculateStats(state_abbrev, percentKillingsBlack):
 
-    global HIGH_DISPARITY_CT
-
+    global COUNT
     #Get percent for this state
-    # for item in PERCENT_KILLINGS_BLACK_BY_STATE:
-    #     if item[0] == state_abbrev:
-    # percentKillingsBlack = item[1]
+
     percentKillingsNotBlack = 100 - percentKillingsBlack
 
     # Get State Demographics
@@ -153,9 +116,9 @@ def calculateStats(state_abbrev, percentKillingsBlack):
 
         totalDisparity = blackDisparity/notBlackDisparity
 
-        if totalDisparity > 1:
-            HIGH_DISPARITY_CT += 1
-            print(HIGH_DISPARITY_CT)
+        if blackDisparity > 1:
+            COUNT += 1
+            print(COUNT, state_abbrev, ": ", percentKillingsBlack, "x", percentPopulationBlack, "=", blackDisparity)
 
         return state_abbrev, percentKillingsBlack, percentKillingsNotBlack, percentPopulationBlack, \
                percentPopulationNotBlack, blackDisparity, notBlackDisparity, totalDisparity
@@ -274,30 +237,30 @@ def main():
 
     initDB(us_state_abbrev)
 
-    running = True
-    while running:
-
-        state = input("\nEnter a State: ")
-
-        if state in us_state_abbrev:
-
-            print(getPoliceKillingsArray())
-            print(queryDB(state))
-            print("% Killings Black:", getPercentKillingsBlack(state))
-            print("% Killings Not Black:",getPercentKillingsNotBlack(state))
-            print("% Population Black:",getPercentPopulationBlack(state))
-            print("% Population Not Black:",getPercentPopulationNotBlack(state))
-            print("Black Disparity of Police Killings to Population:", getBlackDisparity(state))
-            print("Non-Black Disparity of Police Killings to Population:", getNotBlackDisparity(state))
-            print("Disparity of Police Killings between Black and Non-Black People:", getTotalDisparity(state))
-
-        elif state == "exit":
-            running = False
-
-        else:
-            print("Error: Did not input a state abbreviation")
-
-    print("Goodbye!")
+    # running = True
+    # while running:
+    #
+    #     state = input("\nEnter a State: ")
+    #
+    #     if state in us_state_abbrev:
+    #
+    #         print(getPoliceKillingsArray())
+    #         print(queryDB(state))
+    #         print("% Killings Black:", getPercentKillingsBlack(state))
+    #         print("% Killings Not Black:",getPercentKillingsNotBlack(state))
+    #         print("% Population Black:",getPercentPopulationBlack(state))
+    #         print("% Population Not Black:",getPercentPopulationNotBlack(state))
+    #         print("Black Disparity of Police Killings to Population:", getBlackDisparity(state))
+    #         print("Non-Black Disparity of Police Killings to Population:", getNotBlackDisparity(state))
+    #         print("Disparity of Police Killings between Black and Non-Black People:", getTotalDisparity(state))
+    #
+    #     elif state == "exit":
+    #         running = False
+    #
+    #     else:
+    #         print("Error: Did not input a state abbreviation")
+    #
+    # print("Goodbye!")
 
     # print(queryDB("WY"))
     # print(queryDB("CA"))
