@@ -8,10 +8,10 @@
 }
 
 path:not(#frames):hover, circle:hover {
-  stroke: #002868 !important;
+  stroke: salmon !important;
   stroke-width:2px;
   stroke-linejoin: round;
-  fill: #002868 !important;
+  fill: salmon !important;
   cursor: pointer;
 }
 
