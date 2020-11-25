@@ -116,9 +116,10 @@ def calculateStats(state_abbrev, percentKillingsBlack):
 
         totalDisparity = blackDisparity/notBlackDisparity
 
-        if blackDisparity > 1:
-            COUNT += 1
-            print(COUNT, state_abbrev, ": ", percentKillingsBlack, "x", percentPopulationBlack, "=", blackDisparity)
+        # Uncomment to see disparities for each state printed live
+        # if blackDisparity > 1:
+        #     COUNT += 1
+        #     print(COUNT, state_abbrev, ": ", percentKillingsBlack, "x", percentPopulationBlack, "=", blackDisparity)
 
         return state_abbrev, percentKillingsBlack, percentKillingsNotBlack, percentPopulationBlack, \
                percentPopulationNotBlack, blackDisparity, notBlackDisparity, totalDisparity
@@ -136,47 +137,48 @@ def queryDB(state_abbrev):
             blackDisparity = item[5]
             notBlackDisparity = item[6]
 
+            state_name = us_state_abbrev.get(state_abbrev)
+
             if percentPopulationBlack == 0:
-                message += ("No data found for " + state_abbrev + "!")
+                message += ("No data found for " + state_name + "!")
 
             else:
 
                 if (percentPopulationBlack < percentKillingsBlack):
 
                     message += (
-                                "The percent of people killed by police in " + state_abbrev + " who are Black is " + str(
+                                "The percent of people killed by police in " + state_name + " who are Black is " + str(
                             format(percentKillingsBlack, '.2f')) + "%, ")
                     message += ("even though only " + format(percentPopulationBlack,
-                                                             '.2f') + "% of " + state_abbrev + "'s population is Black. ")
+                                                             '.2f') + "% of " + state_name + "'s population is Black. ")
 
                     message += (
-                                "The percent of people killed by police in " + state_abbrev + " who are not Black is " + str(
+                                "The percent of people killed by police in " + state_name + " who are not Black is " + str(
                             format(percentPopulationNotBlack, '.2f')) + "%, ")
                     message += ("whereas " + str(
-                        percentPopulationNotBlack) + "% of " + state_abbrev + "'s population is not Black. ")
+                        percentPopulationNotBlack) + "% of " + state_name + "'s population is not Black. ")
 
-                    message += ("Therefore, a black person is (statistically speaking) " + str(
+                    message += ("Therefore, the police are (statistically speaking) " + str(
                         format(blackDisparity / notBlackDisparity,
-                               '.2f')) + " times more likely to be killed by police than someone who is not Black in " + state_abbrev + ". ")
+                               '.2f')) + " times more likely to kill a Black person than a person of any other race in " + state_name + ". ")
 
                 else:
 
-                    message += ("The percent of people killed by police in " + state_abbrev + " is " + str(
+                    message += ("The percent of people killed by police in " + state_name + " is " + str(
                         format(percentKillingsBlack, '.2f')) + "%, ")
                     message += ("where " + format(percentPopulationBlack,
-                                                  '.2f') + "% of " + state_abbrev + "'s population is Black. ")
+                                                  '.2f') + "% of " + state_name + "'s population is Black. ")
 
-                    message += (
-                                "The percent of people killed by police in " + state_abbrev + " who are not Black is " + str(
+                    message += ("The percent of people killed by police in " + state_name + " who are not Black is " + str(
                             format(percentPopulationNotBlack, '.2f')) + "%, ")
                     message += ("whereas " + str(
-                        percentPopulationNotBlack) + "% of " + state_abbrev + "'s population is not Black. ")
+                        percentPopulationNotBlack) + "% of " + state_name + "'s population is not Black. ")
 
                     # Prevent divide by 0 error
                     if blackDisparity > 0:
-                        message += ("Therefore, a black person is (statistically speaking) " + str(
+                        message += ("Therefore, the police are (statistically speaking) " + str(
                             format((notBlackDisparity / blackDisparity),
-                                   '.2f')) + " times less likely to be killed by police than someone who is not Black in " + state_abbrev + ". ")
+                                   '.2f')) + " times less likely to kill a Black person than a person of any other race in " + state_name + ". ")
                     else:
                         message += ("NO BLACK DISPARITY")
 
@@ -237,33 +239,33 @@ def main():
 
     initDB(us_state_abbrev)
 
-    # running = True
-    # while running:
-    #
-    #     state = input("\nEnter a State: ")
-    #
-    #     if state in us_state_abbrev:
-    #
-    #         print(getPoliceKillingsArray())
-    #         print(queryDB(state))
-    #         print("% Killings Black:", getPercentKillingsBlack(state))
-    #         print("% Killings Not Black:",getPercentKillingsNotBlack(state))
-    #         print("% Population Black:",getPercentPopulationBlack(state))
-    #         print("% Population Not Black:",getPercentPopulationNotBlack(state))
-    #         print("Black Disparity of Police Killings to Population:", getBlackDisparity(state))
-    #         print("Non-Black Disparity of Police Killings to Population:", getNotBlackDisparity(state))
-    #         print("Disparity of Police Killings between Black and Non-Black People:", getTotalDisparity(state))
-    #
-    #     elif state == "exit":
-    #         running = False
-    #
-    #     else:
-    #         print("Error: Did not input a state abbreviation")
-    #
-    # print("Goodbye!")
+    running = True
+    while running:
 
-    # print(queryDB("WY"))
-    # print(queryDB("CA"))
+        state = input("\nEnter a State: ")
+
+        if state in us_state_abbrev:
+
+            # print(getPoliceKillingsArray())
+            print(queryDB(state))
+            # print("% Killings Black:", getPercentKillingsBlack(state))
+            # print("% Killings Not Black:",getPercentKillingsNotBlack(state))
+            # print("% Population Black:",getPercentPopulationBlack(state))
+            # print("% Population Not Black:",getPercentPopulationNotBlack(state))
+            # print("Black Disparity of Police Killings to Population:", getBlackDisparity(state))
+            # print("Non-Black Disparity of Police Killings to Population:", getNotBlackDisparity(state))
+            # print("Disparity of Police Killings between Black and Non-Black People:", getTotalDisparity(state))
+
+        elif state == "exit":
+            running = False
+
+        else:
+            print("Error: Did not input a state abbreviation")
+
+    print("Goodbye!")
+
+    print(queryDB("WY"))
+    print(queryDB("CA"))
     # functionality needed in mongoDB code:
     #
     # To render Pie chart 1:
