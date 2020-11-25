@@ -34,89 +34,215 @@ $path_parts = pathinfo($phpSelf);
 </header>
 
 <!-- ######################     Start  of Nav   ############################ -->
-<nav>
-    <ol>
-        <div class="dropdown">
-          <button class="dropbtn">Relevant News </button>
-          <div class="dropdown-content">
-            <a href="https://www.statista.com/statistics/585152/people-shot-to-death-by-us-police-by-race/">Statistia</a>
-            <a href="https://www.washingtonpost.com/graphics/investigations/police-shootings-database/">The Washington Post</a>
-            <a href="https://www.nature.com/articles/d41586-020-01846-z">Nature</a>
-          </div>
-        </div>
-        <?php
-        print '<li class="';
-        if($path_parts['filename'] == 'map'){
-            print 'activePage';
-        }
-        print '">';
-        print '<a href="map.html">Map</a>';
-        print '</li>';
 
-        print '<li class="';
-        if($path_parts['filename'] == 'aboutUs'){
-            print 'activePage';
-        }
-        print '">';
-        print '<a href="aboutUs.html">About Us</a>';
-        print '</li>';
+        <style>
+body {margin:0;font-family:Arial}
 
-        print '<li class="';
-        if($path_parts['filename'] == 'purpose'){
-            print 'activePage';
-        }
-        print '">';
-        print '<a href="purpose.html">Learn Why</a>';
-        print '</li>';
-        ?>
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
 
-    </ol>
+.topnav h2{
+    float: left;
+}
 
-</nav>
+.topnav a {
+  float: right;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 25px 18px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.active {
+  background-color: salmon;
+  color: black;
+}
+.topnav .icon {
+  display: none;
+}
+
+.dropdown {
+  float: right;
+  overflow: hidden;
+  background-color: salmon;
+  color: black;
+
+}
+
+.dropdown .dropbtn {
+  font-size: 17px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 25px 18px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 14px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: center;
+}
+
+.topnav a:hover, .dropdown:hover .dropbtn {
+  background-color: #555;
+  color: white;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+
+}
+
+@media screen and (max-width: 600px) {
+  .topnav a:not(:first-child), .dropdown .dropbtn {
+    display: none;
+  }
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .topnav.responsive {position: relative;}
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  .topnav.responsive .dropdown {float: none;}
+  .topnav.responsive .dropdown-content {position: relative;}
+  .topnav.responsive .dropdown .dropbtn {
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+}
+/* Create three equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 47%;
+  padding: 15px;
+  align-content: center;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width:600px) {
+  .column {
+    width: 100%;
+  }
+}
+</style>
+<div class="topnav" id="myTopnav">
+  <h2>Website Creators</h2>
+  <a href="map.html" class =active>Interactive Map</a>
+  <a href="aboutUs.html" class =active>About Us</a>
+  <a href="purpose.html" class =active>Learn Why</a>
+  <div class="dropdown">
+    <button class="dropbtn">Relavant Links
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="https://www.statista.com/statistics/585152/people-shot-to-death-by-us-police-by-race/">Statistia</a>
+      <a href="https://www.washingtonpost.com/graphics/investigations/police-shootings-database/">The Washington Post</a>
+      <a href="https://www.nature.com/articles/d41586-020-01846-z">Nature</a>
+    </div>
+  </div>
+  <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+</div>
+
+
+<script>
+function myFunction() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
+</script>
+
 <!-- ######################     End  of Nav   ############################ -->
+<html>
+<body>
+<div class="row">
+  <div class="column">
+    <figure>
+        <img alt="Yousef's Picture" src="images/Yousef.jpg">
+    </figure>
+      <h3><b>Yousef Khan</b></h3>
+      <p class="p">My name is Yousef Khan and I am studying studying Computer Science at UVM...<br><br></p>
 
-<main>
-    <article>
-        <h2>Website Creators</h2>
-        <section>
-            <h3><b>Yousef Khan</b></h3>
-        <figure>
-            <img alt="Yousef's Picture" src="images/Best_Pic_of_Yousef.jpg">
 
-        </figure>
-        <p>My name is Yousef Khan and I am studying studying Computer Science at UVM...</p>
-        </section>
-        <section>
-            <h3><b>Grace Bart</b></h3>
-        <figure>
-            <img alt="Grace's Picture" >
+      <figure>
+        <img alt="Grace's Picture" src="">
+    </figure>
+      <h3><b>Grace Bart</b></h3>
+      <p>My name is Grace Bart and I am studying studying Computer Science at UVM...</p>
+  </div>
 
-        </figure>
-        <p>My name in Grace Bart...</p>
-        </section>
+  <div class="column">
+  <figure>
+    <img alt="Phillip's Picture" src="images/Phillip.jpg">
+    </figure>
+  <h3><b>Phillip Nguyen</b></h3>
+      <p>I am a computer science student with an great interest in computer security, cryptography,
+          functional programming, embedded devices, and operating systems. Currently studying machine
+          learning, differential privacy, and secure distributed computation..</p>
 
-        <section>
-            <h3><b>Isaac Lee</b></h3>
-        <figure>
-            <img alt="Isaac's Picture" >
 
-        </figure>
-        <p>My name is Isaac Lee...</p>
-        </section>
+  <img alt="Isaac's Picture" src="images/Isaac.jpg">
+    </figure>
+  <h3><b>Isacc Lee</b></h3>
+      <p>My name is Isacc Lee and I am studying studying Computer Science at UVM...</p>
 
-        <section>
-            <h3><b>Phillip Nguyen</b></h3>
-        <figure>
-            <img alt="Phillip's Picture" src="">
 
-        </figure>
-        <p>My name is Phillip Nguyen...</p>
-        </section>
-    </article>
-</main>
+  </div>
+
+</div>
+
+</body>
+</html>
 
 <!-- ######################     Footer  #################################### -->
 <footer>
-    <p><br></p>
+    <p><br><br></p>
     <p>Designed by: Yousef Khan, Grace Bart, Isaac Lee, Phillip Nguyen</p>
 </footer>
