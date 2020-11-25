@@ -1,6 +1,7 @@
 import pymongo
 import re
 import sys
+import numpy
 
 SIZE = 50
 PERCENT_KILLINGS_BLACK_BY_STATE = []
@@ -25,6 +26,7 @@ us_state_abbrev = {
     'VA': 'Virginia',       'WA': 'Washington',    'WV': 'West Virginia',
     'WI': 'Wisconsin',      'WY': 'Wyoming',
 }
+
 
 COUNT = 0
 
@@ -235,46 +237,46 @@ def getTotalDisparity(state_abbrev):
             return format(item[7], '.2f')
 
 
-def main():
-
-    initDB(us_state_abbrev)
-
-    running = True
-    while running:
-
-        state = input("\nEnter a State: ")
-
-        if state in us_state_abbrev:
-
-            # print(getPoliceKillingsArray())
-            print(queryDB(state))
-            # print("% Killings Black:", getPercentKillingsBlack(state))
-            # print("% Killings Not Black:",getPercentKillingsNotBlack(state))
-            # print("% Population Black:",getPercentPopulationBlack(state))
-            # print("% Population Not Black:",getPercentPopulationNotBlack(state))
-            # print("Black Disparity of Police Killings to Population:", getBlackDisparity(state))
-            # print("Non-Black Disparity of Police Killings to Population:", getNotBlackDisparity(state))
-            # print("Disparity of Police Killings between Black and Non-Black People:", getTotalDisparity(state))
-
-        elif state == "exit":
-            running = False
-
-        else:
-            print("Error: Did not input a state abbreviation")
-
-    print("Goodbye!")
-
-    print(queryDB("WY"))
-    print(queryDB("CA"))
-    # functionality needed in mongoDB code:
-    #
-    # To render Pie chart 1:
-    # get total population for state
-    # get black population for state
-    #
-    # To render pie chart 2:
-    # get total killings for state
-    # get black killings for state
-
-
-main()
+# def main():
+#
+#     initDB(us_state_abbrev)
+#
+#     running = True
+#     while running:
+#
+#         state = input("\nEnter a State: ")
+#
+#         if state in us_state_abbrev:
+#
+#             print(getPoliceKillingsArray())
+#             print(queryDB(state))
+#             print("% Killings Black:", getPercentKillingsBlack(state))
+#             print("% Killings Not Black:",getPercentKillingsNotBlack(state))
+#             print("% Population Black:",getPercentPopulationBlack(state))
+#             print("% Population Not Black:",getPercentPopulationNotBlack(state))
+#             print("Black Disparity of Police Killings to Population:", getBlackDisparity(state))
+#             print("Non-Black Disparity of Police Killings to Population:", getNotBlackDisparity(state))
+#             print("Disparity of Police Killings between Black and Non-Black People:", getTotalDisparity(state))
+#
+#         elif state == "exit":
+#             running = False
+#
+#         else:
+#             print("Error: Did not input a state abbreviation")
+#
+#     print("Goodbye!")
+#
+#     # print(queryDB("WY"))
+#     # print(queryDB("CA"))
+#     # functionality needed in mongoDB code:
+#     #
+#     # To render Pie chart 1:
+#     # get total population for state
+#     # get black population for state
+#     #
+#     # To render pie chart 2:
+#     # get total killings for state
+#     # get black killings for state
+#
+#
+# main()
