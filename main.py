@@ -53,10 +53,14 @@ def statistics(state_abbrev):
 
     data = dict(stateName = us_state_abbrev[state])
     data["totalPoliceKillings"] = mongoDB.queryDB(state) #us_state_abbrev,
-    # mongoDB.getTotalKillingsForState(state)
-    # data["totalBlackPoliceKillings"] = mongoDB.getBlackKillingsForState(state)
-    # data["totalNonBlackPoliceKillings"] = mongoDB.getNotBlackKillingsForState(state)
-    # data["PercentBlackKillings"] = mongoDB.getPercentBlackKillingsForState(state)
+    data["percentKillingsBlack"] = mongoDB.getPercentKillingsBlack(state)
+    data["percentKillingsNotBlack"] = mongoDB.getPercentKillingsNotBlack(state)
+    data["percentPopulationBlack"] = mongoDB.getPercentPopulationBlack(state)
+    data["percentPopulationNotBlack"] = mongoDB.getPercentPopulationNotBlack(state)
+    data["blackDisparity"] = mongoDB.getBlackDisparity(state)
+    data["notBlackDisparity"] = mongoDB.getNotBlackDisparity(state)
+    data["totalDisparity"] = mongoDB.getTotalDisparity(state)
+
     return jsonify(data)
 
 @app.route('/static', methods=['GET']) #, methods=['GET']

@@ -10,15 +10,37 @@
  * The JSON data is reformatted into a simple list and written to <div id="stats">
  */
 
+google.charts.load('current', {'packages':['corechart']});
+
 $("path:not(#frames)").click(function(e) {
   let state = $(this).attr("id");
   // switch two lines for live instance
   //$.getJSON("http://134.209.76.43:5000/stats/state/" + state, function(data) {
   $.getJSON("http://localhost:5000/stats/state/" + state, function(data) {
+
+    var chartdata1 = google.visualization.arrayToDataTable([
+        ['Race', 'Percent of Population'],
+        ['Black', parseInt(data.percentPopulationBlack)],
+        ['Non-Black', parseInt(data.percentPopulationNotBlack)]
+    ]);
+    var chartdata2 = google.visualization.arrayToDataTable([
+        ['Race', 'Percent of Killings'],
+        ['Black', parseInt(data.percentKillingsBlack)],
+        ['Non-Black', parseInt(data.percentKillingsNotBlack)]
+    ]);
+    var chartoptions1 = {'title': 'Demographics of '+ data.stateName, 'width': 400, 'height': 400, chartArea:{top:50, left:50, width:"100%", height:"100%"}};
+    var chartoptions2 = {'title': 'Police Killings in ' + data.stateName, 'width': 400, 'height': 400, chartArea:{top:50, left: 50, width:"100%", height:"100%"}};
+    var chart1 = new google.visualization.PieChart(document.getElementById('chartContainer1'));
+    chart1.draw(chartdata1, chartoptions1);
+    var chart2 = new google.visualization.PieChart(document.getElementById('chartContainer2'));
+    chart2.draw(chartdata2, chartoptions2);
+
     let stats = []
-    $.each(data, function(key,val) {
-      stats.push("<li id'" + key + "'>" + key + ": " + val + "</li>");
-    });
+    //$.each(data, function(key,val) {
+    //  stats.push("<li id'" + key + "'>" + key + ": " + val + "</li>");
+    //});
+    stats.push(data.totalPoliceKillings)
     $('#stats').html(stats.join(""));
+
   });
 });
