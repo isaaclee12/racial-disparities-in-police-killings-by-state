@@ -1,7 +1,6 @@
 import pymongo
 import re
 import sys
-import numpy
 
 SIZE = 50
 PERCENT_KILLINGS_BLACK_BY_STATE = []
