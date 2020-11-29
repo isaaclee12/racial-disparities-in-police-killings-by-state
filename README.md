@@ -1,4 +1,4 @@
-# CS-205-FInal-Project-Team-Five
+# CS-205-Final-Project-Team-Five
 
 CS 205 Final Project
 
