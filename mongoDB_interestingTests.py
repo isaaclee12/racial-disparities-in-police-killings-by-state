@@ -107,6 +107,21 @@ def calculateStats(state_abbrev, percentKillingsBlack):
         notBlackDisparity = 0
         totalDisparity = 0
 
+        COUNT += 1
+        print(COUNT, state_abbrev, ": ", percentKillingsBlack, "x", percentPopulationBlack, "=", blackDisparity)
+        # item = state_abbrev, (blackDisparity / notBlackDisparity)
+        # FACTORS.append(item)
+        outfile = open("results.csv", "a")
+        outstring = state_abbrev + "," + str(format(percentKillingsBlack, '.2f')) \
+                    + "," + str(format(percentPopulationBlack,'.2f')) \
+                    + "," + str(format(percentKillingsNotBlack, '.2f')) \
+                    + "," + str(format(percentPopulationNotBlack, '.2f')) \
+                    + "," + str(format(blackDisparity, '.2f')) \
+                    + "," + str(format(notBlackDisparity, '.2f')) \
+                    + "," + str(format(totalDisparity, '.2f')) + "\n"
+        outfile.write(outstring)
+        outfile.close()
+
         return state_abbrev, percentKillingsBlack, percentKillingsNotBlack, percentPopulationBlack, \
                percentPopulationNotBlack, blackDisparity, notBlackDisparity, totalDisparity
 
@@ -121,21 +136,23 @@ def calculateStats(state_abbrev, percentKillingsBlack):
         totalDisparity = blackDisparity/notBlackDisparity
 
         # Uncomment to see disparities for each state printed live
-        if blackDisparity > 1:
-            COUNT += 1
-            print(COUNT, state_abbrev, ": ", percentKillingsBlack, "x", percentPopulationBlack, "=", blackDisparity)
-            item = state_abbrev, (blackDisparity/notBlackDisparity)
-            FACTORS.append(item)
-            outfile = open("results.csv", "a")
-            outstring = state_abbrev + "," + str(format(percentKillingsBlack, '.2f')) \
-                        + "," + str(percentPopulationBlack) \
-                        + "," + str(format(percentKillingsNotBlack, '.2f')) \
-                        + "," + str(format(percentPopulationNotBlack, '.2f')) \
-                        + "," + str(format(blackDisparity, '.2f')) \
-                        + "," + str(format(notBlackDisparity, '.2f')) \
-                        + "," + str(format((blackDisparity/notBlackDisparity), '.2f')) + "\n"
-            outfile.write(outstring)
-            outfile.close()
+        # if blackDisparity > 1:
+        COUNT += 1
+        print(COUNT, state_abbrev, ": ", percentKillingsBlack, "x", percentPopulationBlack, "=", blackDisparity)
+        item = state_abbrev, (blackDisparity/notBlackDisparity)
+        FACTORS.append(item)
+        outfile = open("results.csv", "a")
+        outstring = state_abbrev \
+                    + "," + us_state_abbrev.get(state_abbrev) \
+                    + "," + str(format(percentKillingsBlack, '.2f')) \
+                    + "," + str(format(percentPopulationBlack,'.2f')) \
+                    + "," + str(format(percentKillingsNotBlack, '.2f')) \
+                    + "," + str(format(percentPopulationNotBlack, '.2f')) \
+                    + "," + str(format(blackDisparity, '.2f')) \
+                    + "," + str(format(notBlackDisparity, '.2f')) \
+                    + "," + str(format((blackDisparity/notBlackDisparity), '.2f')) + "\n"
+        outfile.write(outstring)
+        outfile.close()
 
         return state_abbrev, percentKillingsBlack, percentKillingsNotBlack, percentPopulationBlack, \
                percentPopulationNotBlack, blackDisparity, notBlackDisparity, totalDisparity
