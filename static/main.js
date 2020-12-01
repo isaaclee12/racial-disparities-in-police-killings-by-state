@@ -25,8 +25,8 @@ $("path:not(#frames)").click(function(e) {
     ]);
     var chartdata2 = google.visualization.arrayToDataTable([
         ['Race', 'Percent of Killings'],
-        ['Black', parseInt(data.percentKillingsBlack)],
-        ['Non-Black', parseInt(data.percentKillingsNotBlack)]
+        ['Black', parseFloat(data.percentKillingsBlack)],
+        ['Non-Black', parseFloat(data.percentKillingsNotBlack)]
     ]);
     var chartoptions1 = {'title': 'Demographics of '+ data.stateName, 'width': 400, 'height': 400, chartArea:{top:50, left:50, width:"100%", height:"100%"}};
     var chartoptions2 = {'title': 'Police Killings in ' + data.stateName, 'width': 400, 'height': 400, chartArea:{top:50, left: 50, width:"100%", height:"100%"}};
