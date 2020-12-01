@@ -15,8 +15,8 @@ google.charts.load('current', {'packages':['corechart']});
 $("path:not(#frames)").click(function(e) {
   let state = $(this).attr("id");
   // switch two lines for live instance (use the IP address of YOUR hosting server)
-  $.getJSON("http://134.209.76.43:5000/stats/state/" + state, function(data) {
-  //$.getJSON("http://localhost:5000/stats/state/" + state, function(data) {
+  //$.getJSON("http://134.209.76.43:5000/stats/state/" + state, function(data) {
+  $.getJSON("http://localhost:5000/stats/state/" + state, function(data) {
 
     var chartdata1 = google.visualization.arrayToDataTable([
         ['Race', 'Percent of Population'],
