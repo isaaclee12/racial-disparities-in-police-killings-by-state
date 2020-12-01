@@ -30,12 +30,14 @@ $path_parts = pathinfo($phpSelf);
 
     <!-- ######################     Start of Body   ############################ -->
 <header>
-    <h1>Team Five Final Project</h1>
+    <h1>Racial Disparities in Police Killings by US State</h1>
 </header>
 
 <!-- ######################     Start  of Nav   ############################ -->
 
-        <style>
+
+<style>
+
 body {margin:0;font-family:Arial}
 
 .topnav {
@@ -168,12 +170,22 @@ body {margin:0;font-family:Arial}
     width: 100%;
   }
 }
+
+/* Center image on aboutus page */
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
+}
+
 </style>
 <div class="topnav" id="myTopnav">
   <h2>Website Creators</h2>
   <a href="map.html" class =active>Interactive Map</a>
   <a href="aboutUs.html" class =active>About Us</a>
-  <a href="purpose.html" class =active>Learn Why</a>
+  <a href="purpose.html" class =active>Project Description</a>
+
   <div class="dropdown">
     <button class="dropbtn">Relavant Links
       <i class="fa fa-caret-down"></i>
@@ -205,16 +217,21 @@ function myFunction() {
 <div class="row">
   <div class="column">
     <figure>
-        <img alt="Yousef's Picture" src="images/Yousef.jpg">
+
+        <img class="center" alt="Yousef's Picture" src="images/Yousef.jpg">
     </figure>
-      <h3><b>Yousef Khan</b></h3>
-      <p class="p">My name is Yousef Khan and I am studying studying Computer Science at UVM...<br><br></p>
+      <h3 style="text-align:center"> <b>Yousef Khan</b></h3>
+      <p>I am a junior at UVM pursuing a double major in Computer Science and Mathematics. Growing up
+          in Vermont has made me a very active and outdoorsy person who has become an avid to cliff
+          jumper, skier and maple syrup connoisseur. I also have a deep interest in cyber security and
+          artificial intelligence.<br><br></p>
 
 
     <figure>
-        <img alt="Grace's Picture" src="images/Yousef.jpg">
+        <img class="center" alt="Grace's Picture" src="images/Grace.jpg">
     </figure>
-      <h3><b>Grace Bart</b></h3>
+      <h3 style="text-align:center"><b>Grace Bart</b></h3>
+
       <p>I am a math major focusing on pure math and getting a minor in computer science.
           This is my final semester here at UVM and am looking forward to going out into the
           world with the tools and skills my college experience has given me.</p>
@@ -222,18 +239,24 @@ function myFunction() {
 
   <div class="column">
   <figure>
-    <img alt="Phillip's Picture" src="images/Phillip.jpg">
-    </figure>
-  <h3><b>Phillip Nguyen</b></h3>
+
+    <img alt="Phillip's Picture" src="images/Phillip.jpg" class="center">
+  </figure>
+  <h3 style="text-align:center"><b>Phillip Nguyen</b></h3>
       <p>I am a computer science student with an great interest in computer security, cryptography,
           functional programming, embedded devices, and operating systems. Currently studying machine
-          learning, differential privacy, and secure distributed computation..</p>
+          learning, differential privacy, and secure distributed computation. <br> <br></p>
 
 
-  <img alt="Isaac's Picture" src="images/Isaac.jpg">
-    </figure>
-  <h3><b>Isacc Lee</b></h3>
-      <p>My name is Isacc Lee and I am studying studying Computer Science at UVM...</p>
+  <figure>
+    <img class="center" alt="Isaac's Picture" src="images/Isaac.jpg">
+  </figure>
+  <h3 style="text-align:center"><b>Isacc Lee</b></h3>
+      <p>Isaac Lee is a designer, programmer, writer, artist, and activist. As an undergraduate
+          student studying computer science at UVM, he has worked on several collaborative projects,
+          ranging from websites, video games, data visualizers, and more. Isaac’s favorite things to
+          do are playing video games, cooking for others, and seeking a means to racial and economic equity.</p>
+
 
 
   </div>

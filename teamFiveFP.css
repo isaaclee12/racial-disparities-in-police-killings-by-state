@@ -14,10 +14,12 @@ h2{
 }
 h3{
     color: white;
+    align-content: center;
 }
 
 p{
     color: white;
+    align-content: center;
 }
 /* ========================= Map ===============================*/
 #map h2{
@@ -123,6 +125,7 @@ p{
   padding: 14px 16px;
   text-decoration: none;
   font-size: 17px;
+
 }
 
 .active {
