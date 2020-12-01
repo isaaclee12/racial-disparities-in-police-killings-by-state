@@ -1,4 +1,5 @@
-/* BEGIN CODE from websitebeaver.com*/
+/* Inspired from websitebeaver.com guide*/
+
 #us-map{
   display: block;
   position: absolute; top: 0;
@@ -8,10 +9,10 @@
 }
 
 path:not(#frames):hover, circle:hover {
-  stroke: salmon !important;
+  stroke: #191970 !important;
   stroke-width:2px;
   stroke-linejoin: round;
-  fill: salmon !important;
+  fill: #191970 !important;
   cursor: pointer;
 }
 
@@ -33,7 +34,6 @@ path:not(#frames):hover, circle:hover {
   padding: 5px;
   font-family: arial;
 }
-/* END CODE from websitebeaver.com*/
 
 #stats {
     color: white;
