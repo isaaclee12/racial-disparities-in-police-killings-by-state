@@ -147,41 +147,37 @@ def queryDB(state_abbrev):
 
                 if (percentPopulationBlack < percentKillingsBlack):
 
-                    message += (
-                                "The percent of people killed by police in " + state_name + " who are Black is " + str(
+                    message += ("The percent of Black people killed by police in " + state_name + " is " + str(
                             format(percentKillingsBlack, '.2f')) + "%, ")
                     message += ("\neven though only " + format(percentPopulationBlack,
                                                              '.2f') + "% of " + state_name + "'s population is Black. ")
 
-                    message += (
-                                "\nThe percent of people killed by police in " + state_name + " who are not Black is " + str(
-                            format(percentKillingsNotBlack, '.2f')) + "%, ")
+                    message += "\nThe percent of Non-Black people killed by police in " + state_name + " is " + str(format(percentKillingsNotBlack, '.2f')) + "%, "
                     message += ("\nwhereas " + str(
-                        percentPopulationNotBlack) + "% of " + state_name + "'s population is not Black. ")
+                        percentPopulationNotBlack) + "% of " + state_name + "'s population is Non-Black. ")
 
-                    message += ("\nTherefore, the police are (statistically speaking) " + str(
+                    message += ("\nTherefore, a Black person is" + str(
                         format(blackDisparity / notBlackDisparity,
-                               '.2f')) + " times more likely to kill a Black person than a person of any other race in " + state_name + ". ")
+                               '.2f')) + " times more likely to be killed by police than a Non-Black person in the state of " + state_name + ". ")
 
                 else:
 
-                    message += ("The percent of people killed by police in " + state_name + " is " + str(
-                        format(percentKillingsBlack, '.2f')) + "%, ")
+                    message += ("The percent of Black people killed by police in " + state_name + " is " + str(
+                            format(percentKillingsBlack, '.2f')) + "%, ")
                     message += ("\nwhere " + format(percentPopulationBlack,
                                                   '.2f') + "% of " + state_name + "'s population is Black. ")
 
-                    message += ("\nThe percent of people killed by police in " + state_name + " who are not Black is " + str(
-                            format(percentKillingsNotBlack, '.2f')) + "%, ")
+                    message += "\nThe percent of Non-Black people killed by police in " + state_name + " is " + str(format(percentKillingsNotBlack, '.2f')) + "%, "
                     message += ("\nwhereas " + str(
                         percentPopulationNotBlack) + "% of " + state_name + "'s population is not Black. ")
 
                     # Prevent divide by 0 error
                     if blackDisparity > 0:
-                        message += ("\nTherefore, the police are (statistically speaking) " + str(
+                        message += ("\nTherefore, a Black person is " + str(
                             format((notBlackDisparity / blackDisparity),
-                                   '.2f')) + " times less likely to kill a Black person than a person of any other race in " + state_name + ". ")
-                    else:
-                        message += ("NO BLACK DISPARITY")
+                                   '.2f')) + " times less likely to be killed by police than a Non-Black person in the state of " + state_name + ". ")
+                    #else:
+                        #message += ("NO BLACK DISPARITY")
 
             return message
 
