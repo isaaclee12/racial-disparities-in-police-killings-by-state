@@ -4,7 +4,7 @@ CS 205 Final Project
 
 **Team Members:** Yousef Khan, Isaac Lee, Grace Bart, Phillip Nguyen
 
-**Live Instance of Project:** http://134.209.76.43/dev/map.html
+**Live Instance of Project:** http://134.209.76.43/dev/map.html (Site is currently down)
 
 **Languages:**
 
