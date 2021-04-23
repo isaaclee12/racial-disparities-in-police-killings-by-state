@@ -6,6 +6,11 @@ CS 205 Final Project
 
 **Live Instance of Project:** http://134.209.76.43/dev/map.html (Site is currently down)
 
+**File Descriptions**
+main.py - The main flask code
+mongoDB.py - The API code that links the mongoDB database to the front end
+map.html - The main page with the interactive map
+
 **Languages:**
 
 - Python (/w pymongo and flask)
