@@ -5,10 +5,7 @@
 Make sure that python3 and pip are installed. [link to pip documentation](https://pip.pypa.io/)
 
 ```
-$ pip install flask
-$ pip install flask-cors
-$ pip install pymongo
-$ pip install dnspython
+$ pip install flask flask-cors pymongo dnspython
 ```
 
 
