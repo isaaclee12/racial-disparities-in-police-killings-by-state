@@ -4,6 +4,8 @@ Our team used a Trello board to keep our tasks organized, and we split responsib
 
 Overall, this project was a great success. I thoroughly enjoyed working on this project as it leveraged my interest in working in an intersection of technology, data analysis, and social welfare.
 
+Note - I plan to redploy this project at some point so that others may see the final result.
+
 **Team Members:** Yousef Khan, Isaac Lee, Grace Bart, Phillip Nguyen
 
 **Live Instance of Project:** http://134.209.76.43/dev/map.html (Site is currently down)
