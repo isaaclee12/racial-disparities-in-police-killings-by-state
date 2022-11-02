@@ -1,6 +1,8 @@
-# CS-205-Final-Project-Team-Five
+This was my final project for my CS205 - Software Engineering course at the University of Vermont. This was my first exposure to working on a full stack project in a group setting. Much of this project was completed remotely due to COVID-19 restrictions.
 
-CS 205 Final Project
+Our team used a Trello board to keep our tasks organized, and we split responsibilities based on each end of the program. I was responsible for the MongoDB backend, as well as the Flask API. The others were responsible for web hosting, UI design, and front-end development.
+
+Overall, this project was a great success. I thoroughly enjoyed working on this project as it leveraged my interest in working in an intersection of technology, data analysis, and social welfare.
 
 **Team Members:** Yousef Khan, Isaac Lee, Grace Bart, Phillip Nguyen
 
