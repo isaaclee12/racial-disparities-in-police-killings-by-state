@@ -6,9 +6,12 @@ This file is just a small copy of mongoDB/mongoDB.py for flask testing.
 """
 
 def initDB():
-    # Set up connection with MongoClient
-    uri = "mongodb+srv://iwlee:EggCheeseBeansToast@uspolicekillings.ezqox.mongodb.net/US_Police_Killings?retryWrites=true&w=majority"
-    myclient = pymongo.MongoClient(uri)
+    # Set up connection with MongoClient - CREDENTIALS REMOVED FOR SECURITY
+    import os
+    mongo_uri = os.getenv('MONGODB_URI')
+    if not mongo_uri:
+        raise ValueError("MONGODB_URI environment variable is required. Set it in your deployment environment.")
+    myclient = pymongo.MongoClient(mongo_uri)
     global mydb
     # Set up database
     mydb = myclient["police_killings"]
