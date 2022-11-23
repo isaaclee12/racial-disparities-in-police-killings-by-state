@@ -32,7 +32,7 @@ COUNT = 0
 def initDB(states):
 
     # Set up connection with MongoClient
-    myclient = pymongo.MongoClient("mongodb+srv://iwlee:EggCheeseBeansToast@uspolicekillings.ezqox.mongodb.net/US_Police_Killings?retryWrites=true&w=majority")
+    myclient = pymongo.MongoClient("mongodb+srv://iwlee:B75lhWjlPCQBeYd8@uspolicekillings.ezqox.mongodb.net/US_Police_Killings?retryWrites=true&w=majority")
 
     # Set up databases
     global mydb
@@ -58,8 +58,8 @@ def initDB(states):
                                   {"Race with imputations": {"$ne": "African-American/Black"}}
                                   ]}
 
-        blackKillings = mycol.count(blackQuery)
-        notBlackKillings = mycol.count(notBlackQuery)
+        blackKillings = mycol.count_documents(blackQuery)
+        notBlackKillings = mycol.count_documents(notBlackQuery)
 
         percentKillingsBlack = (blackKillings / (blackKillings + notBlackKillings)) * 100
 
