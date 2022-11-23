@@ -58,8 +58,8 @@ def initDB(states):
                                   {"Race with imputations": {"$ne": "African-American/Black"}}
                                   ]}
 
-        blackKillings = mycol.count_documents(blackQuery)
-        notBlackKillings = mycol.count_documents(notBlackQuery)
+        blackKillings = mycol.count(blackQuery)
+        notBlackKillings = mycol.count(notBlackQuery)
 
         percentKillingsBlack = (blackKillings / (blackKillings + notBlackKillings)) * 100
 
