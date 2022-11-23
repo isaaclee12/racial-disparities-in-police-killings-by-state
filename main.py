@@ -29,6 +29,10 @@ us_state_abbrev = {
 
 mongoDB.initDB(us_state_abbrev)
 
+@app.route('/index', methods=['GET'])
+def index():
+    return render_template("map.html")
+
 @app.route('/', methods=['GET'])
 def test():
     '''Developer help function of sorts.'''
