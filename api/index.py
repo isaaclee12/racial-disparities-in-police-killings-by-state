@@ -2,6 +2,10 @@ from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 import os
 import sys
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Add the parent directory to sys.path to import our modules
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))

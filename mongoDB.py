@@ -1,6 +1,10 @@
 import pymongo
 import re
 import sys
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 SIZE = 50
 PERCENT_KILLINGS_BLACK_BY_STATE = []
