@@ -1,6 +1,10 @@
 import pymongo
 import re
 import sys
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 SIZE = 50
 PERCENT_KILLINGS_BLACK_BY_STATE = []
@@ -32,7 +36,7 @@ COUNT = 0
 def initDB(states):
 
     # Set up connection with MongoClient
-    myclient = pymongo.MongoClient("mongodb+srv://iwlee:B75lhWjlPCQBeYd8@uspolicekillings.ezqox.mongodb.net/US_Police_Killings?retryWrites=true&w=majority")
+    myclient = pymongo.MongoClient(os.getenv('MONGODB_URI'))
 
     # Set up databases
     global mydb

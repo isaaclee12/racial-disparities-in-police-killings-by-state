@@ -1,9 +1,14 @@
 from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
+from dotenv import load_dotenv
+import os
 import mongoDB
 
+# Load environment variables from .env file
+load_dotenv()
+
 # Init Code: Starts up flask app and sets up database
-app = Flask(__name__, static_url_path='')
+app = Flask(__name__)
 cors = CORS(app)
 
 
@@ -32,6 +37,18 @@ mongoDB.initDB(us_state_abbrev)
 @app.route('/index', methods=['GET'])
 def index():
     return render_template("map.html")
+
+@app.route('/map', methods=['GET'])
+def map():
+    return render_template("map.html")
+
+@app.route('/about', methods=['GET'])
+def about():
+    return render_template("aboutUs.html")
+
+@app.route('/purpose', methods=['GET'])
+def purpose():
+    return render_template("purpose.html")
 
 @app.route('/', methods=['GET'])
 def test():
@@ -67,15 +84,17 @@ def statistics(state_abbrev):
 
     return jsonify(data)
 
-@app.route('/static', methods=['GET']) #, methods=['GET']
-def map():
-    return render_template("../static.html")
-
 @app.route('/maptest', methods=['GET']) #, methods=['GET']
 def maptest():
     return app.send_static_file("maptest.html")
 
 if __name__ == "__main__":
-    # switch two lines for live instance
-    app.run(debug=True, port=5000, threaded=True)
-    #app.run(debug=True, host='0.0.0.0', port=5000, threaded=True)
+    # Use debug mode locally, production mode on Render
+    is_production = os.environ.get('PORT') is not None
+    port = int(os.environ.get('PORT', 5000))
+    
+    app.run(
+        host='0.0.0.0', 
+        port=port, 
+        debug=not is_production
+    )
