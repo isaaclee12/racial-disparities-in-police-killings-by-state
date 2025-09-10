@@ -68,9 +68,5 @@ def statistics(state_abbrev):
 
     return jsonify(data)
 
-# Export the app for Vercel
-def handler(request):
-    return app(request.environ, lambda status, headers: None)
-
-if __name__ == "__main__":
-    app.run(debug=True)
+# Vercel automatically detects the 'app' variable as WSGI application
+# No custom handler needed
