@@ -1,0 +1,282 @@
+<?php
+$phpSelf = htmlentities($_SERVER['PHP_SELF'], ENT_QUOTES, "UTF-8");
+
+$path_parts = pathinfo($phpSelf);
+?>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- you can add php code here (similar to nav.php) to print a different title on each page -->
+
+        <title>Team Five's Final Project</title>
+
+        <link rel="icon" href="images/Logo.png" sizes="32x32" >
+        <meta charset="utf-8">
+        <meta name="author" content="Yousef Khan, Grace Bart, Isaac Lee, Phillip Nguyen">
+        <meta name="description" content="Social Justice">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <link rel="stylesheet" href="teamFiveFP.css" type="text/css" media="screen">
+    <?php
+            $debug = false;
+
+    $domain = '//';
+
+    $server = htmlentities($_SERVER['SERVER_NAME'], ENT_QUOTES, 'UTF-8');
+
+    $domain .= $server;
+?>
+
+
+    <!-- ######################     Start of Body   ############################ -->
+<style>
+a {
+    text-decoration: none;
+    color: black;
+}
+</style>
+<header>
+    <h1><a href="http://134.209.76.43/dev/map.html">Racial Disparities in Police Killings by US State</a></h1>
+</header>
+
+<!-- ######################     Start  of Nav   ############################ -->
+
+
+<style>
+
+body {margin:0;font-family:Arial}
+
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+.topnav h2{
+    float: left;
+    padding-left: 0.5em;
+}
+
+.topnav a {
+  float: right;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 25px 18px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.active {
+  background-color: salmon;
+  color: black;
+}
+.topnav .icon {
+  display: none;
+}
+
+.dropdown {
+  float: right;
+  overflow: hidden;
+  background-color: salmon;
+  color: black;
+
+}
+
+.dropdown .dropbtn {
+  font-size: 17px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 25px 18px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 14px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: center;
+}
+
+.topnav a:hover, .dropdown:hover .dropbtn {
+  background-color: #555;
+  color: white;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+
+}
+
+@media screen and (max-width: 600px) {
+  .topnav a:not(:first-child), .dropdown .dropbtn {
+    display: none;
+  }
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .topnav.responsive {position: relative;}
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  .topnav.responsive .dropdown {float: none;}
+  .topnav.responsive .dropdown-content {position: relative;}
+  .topnav.responsive .dropdown .dropbtn {
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+}
+/* Create three equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 47%;
+  padding: 15px;
+  align-content: center;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width:600px) {
+  .column {
+    width: 100%;
+  }
+}
+
+/* Center image on aboutus page */
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
+}
+
+</style>
+<div class="topnav" id="myTopnav">
+  <h2> Website Creators</h2>
+  <div class="dropdown">
+    <button class="dropbtn">Relavant Links
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="https://www.statista.com/statistics/585152/people-shot-to-death-by-us-police-by-race/">Statistia</a>
+      <a href="https://www.washingtonpost.com/graphics/investigations/police-shootings-database/">The Washington Post</a>
+      <a href="https://www.nature.com/articles/d41586-020-01846-z">Nature</a>
+    </div>
+  </div>
+
+  <a href="aboutUs.html" class =active>About Us</a>
+  <a href="purpose.html" class =active>Project Description</a>
+  <a href="map.html" class =active>Interactive Map</a>
+
+
+  <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+</div>
+
+
+<script>
+function myFunction() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
+</script>
+
+<!-- ######################     End  of Nav   ############################ -->
+<html>
+<body>
+<div class="row">
+  <div class="column">
+    <figure>
+
+        <img class="center" alt="Yousef's Picture" src="images/Yousef.jpg">
+    </figure>
+      <h3 style="text-align:center"> <b>Yousef Khan</b></h3>
+      <p>I am a junior at UVM pursuing a double major in Computer Science and Mathematics. Growing up
+          in Vermont has made me a very active and outdoorsy person who has become an avid to cliff
+          jumper, skier and maple syrup connoisseur. I also have a deep interest in cyber security and
+          artificial intelligence.<br><br></p>
+
+
+    <figure>
+        <img class="center" alt="Grace's Picture" src="images/Grace.jpg">
+    </figure>
+      <h3 style="text-align:center"><b>Grace Bart</b></h3>
+
+      <p>I am a math major focusing on pure math and getting a minor in computer science.
+          This is my final semester here at UVM and am looking forward to going out into the
+          world with the tools and skills my college experience has given me.</p>
+  </div>
+
+  <div class="column">
+  <figure>
+
+    <img alt="Phillip's Picture" src="images/Phillip.jpg" class="center">
+  </figure>
+  <h3 style="text-align:center"><b>Phillip Nguyen</b></h3>
+      <p>I am a computer science student with an great interest in computer security, cryptography,
+          functional programming, embedded devices, and operating systems. Currently studying machine
+          learning, differential privacy, and secure distributed computation. <br> <br></p>
+
+
+  <figure>
+    <img class="center" alt="Isaac's Picture" src="images/Isaac.jpg">
+  </figure>
+  <h3 style="text-align:center"><b>Isaac Lee</b></h3>
+      <p>Isaac Lee is a designer, programmer, writer, artist, and activist. As an undergraduate
+          student studying computer science at UVM, he has worked on several collaborative projects,
+          ranging from websites, video games, data visualizers, and more. Isaac’s favorite things to
+          do are playing video games, cooking for others, and seeking a means to racial and economic equity.</p>
+
+
+
+  </div>
+
+</div>
+
+</body>
+</html>
+
+<!-- ######################     Footer  #################################### -->
+<footer>
+    <p><br></p>
+    <p style="color: grey">Designed by: Yousef Khan, Grace Bart, Isaac Lee, Phillip Nguyen</p>
+</footer>
